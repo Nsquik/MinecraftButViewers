@@ -1,0 +1,35 @@
+{
+  "name": "mchardcoretwitch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon server",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.2.0",
+    "cookie-session": "^1.4.0",
+    "express": "^4.17.1",
+    "minecraft-server-status": "^1.0.1",
+    "modern-rcon": "^1.0.3",
+    "mongoose": "^5.9.13",
+    "nodemon": "^2.0.3",
+    "passport": "^0.4.1",
+    "passport-twitch": "^1.0.3",
+    "passport-twitch.js": "0.0.9",
+    "scriptserver-util": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nsquik/MinecraftButViewers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nsquik/MinecraftButViewers/issues"
+  },
+  "homepage": "https://github.com/Nsquik/MinecraftButViewers#readme"
+}
