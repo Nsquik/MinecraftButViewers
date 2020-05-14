@@ -1,10 +1,14 @@
 const express = require("express");
+const cookieSession = require("cookie-session");
+const keys = require("./config/keys");
 const Rcon = require("modern-rcon");
-const status = require("minecraft-server-status");
+require("./services/mongoose");
 const passport = require("passport");
 require("./services/passport");
 
 const authRouter = require("./auth/auth-routes");
+const userRouter = require("./routes/users-routes");
+const mcserverRouter = require("./routes/minecraft-server-routes");
 
 // status("2b2t.org", 25565, (response) => {
 //   console.log(response);
@@ -21,8 +25,19 @@ const authRouter = require("./auth/auth-routes");
 
 const server = express();
 
-server.use(authRouter);
+server.use(
+  cookieSession({
+    maxAge: 1000 * 60,
+    keys: [keys.cookieKey],
+  })
+);
+
 server.use(passport.initialize());
+server.use(passport.session());
+
+server.use(authRouter);
+server.use(userRouter);
+server.use(mcserverRouter);
 
 server.get("/", (req, res) => {
   //   rcon.send("say elowuinsa").catch((err) => console.log("nie wyslalo"));
