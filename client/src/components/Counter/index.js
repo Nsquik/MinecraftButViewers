@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
+import { counterContext } from "../../context/CounterContext";
+import { get } from "mongoose";
 
-const Total = ({ passprops }) => {
+const Total = () => {
+  const { count } = useContext(counterContext);
+
   return (
     <>
       <div className="quantity">szt.</div>
-      <div className="total">{passprops}</div>{" "}
+      <div className="total">{count}</div>
     </>
   );
 };
 
-const Reset = ({ passprops }) => {
+const Reset = () => {
+  const { reset } = useContext(counterContext);
+
   return (
-    <button className="reset" onClick={() => passprops()}>
+    <button className="reset" onClick={() => reset()}>
       RESET
     </button>
   );
 };
 
-const Decrement = ({ passprops }) => {
+const Decrement = () => {
+  const { getDecrementerProps } = useContext(counterContext);
+
   return (
     <svg
-      {...passprops}
+      {...getDecrementerProps()}
       className="counter__decrement"
       xmlns="http://www.w3.org/2000/svg"
       style={{ cursor: "pointer" }}
@@ -35,10 +43,12 @@ const Decrement = ({ passprops }) => {
   );
 };
 
-const Increment = ({ passprops }) => {
+const Increment = () => {
+  const { getIncrementerProps } = useContext(counterContext);
+
   return (
     <svg
-      {...passprops}
+      {...getIncrementerProps()}
       className="counter__increment"
       style={{ cursor: "pointer" }}
       xmlns="http://www.w3.org/2000/svg"
