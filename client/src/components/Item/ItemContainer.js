@@ -5,9 +5,9 @@ import CounterContext from "../../context/CounterContext";
 import Counter from "../Counter";
 import Buy from "../Buy";
 
-const ItemContainer = ({ type, item }) => {
+const ItemContainer = ({ type, item, price }) => {
   return (
-    <ItemContext type={type} item={item}>
+    <ItemContext type={type} item={item} price={price}>
       <Item>
         <div className="counter">
           <CounterContext>

@@ -1,0 +1,23 @@
+.content__text {
+  font-family: "Lato", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.content__item {
+  color: var(--color-navbar);
+  letter-spacing: 1px;
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content__price {
+  font-family: "Lato", sans-serif;
+  color: rgb(27, 175, 27);
+  font-size: 1.5rem;
+}
+
+.content__error {
+  color: red;
+}
