@@ -7,7 +7,11 @@ const status = require("minecraft-server-status");
 router.get("/api/server_status", (req, res) => {
   status(keys.minecraftIP, 25565, (response) => {
     const { status, online, players } = response;
-    res.json({ status, online, players });
+    if (online === false) {
+      res.json(false);
+    } else {
+      res.json({ status, online, players });
+    }
   });
 });
 

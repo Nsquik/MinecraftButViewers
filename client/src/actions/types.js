@@ -1,0 +1,4 @@
+export const FETCH_USER = "FETCH_USER";
+
+///// SERVER ACTIONS ///////
+export const CHECK_SERVER_STATUS = "CHECK_SERVER_STATUS";

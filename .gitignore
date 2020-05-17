@@ -6,7 +6,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 server/config/dev.js
-client
 todo.txt
 
 # Diagnostic reports (https://nodejs.org/api/report.html)

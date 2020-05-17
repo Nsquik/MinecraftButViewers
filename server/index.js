@@ -27,7 +27,7 @@ const server = express();
 
 server.use(
   cookieSession({
-    maxAge: 1000 * 60,
+    maxAge: 1000 * 60 * 60,
     keys: [keys.cookieKey],
   })
 );

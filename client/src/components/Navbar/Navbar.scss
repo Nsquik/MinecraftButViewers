@@ -1,0 +1,31 @@
+.link {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+  }
+}
+.navbar__item {
+  color: black;
+}
+
+.navbar {
+  background: var(--color-navbar);
+  height: 5rem;
+  position: relative;
+}
+
+.navbar__list {
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  background: var(--color-navbar);
+  height: 5rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style: none;
+
+  //   background: red;
+}
