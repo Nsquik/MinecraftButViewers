@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 const Rcon = require("modern-rcon");
 require("./services/mongoose");
@@ -9,21 +10,10 @@ require("./services/passport");
 const authRouter = require("./auth/auth-routes");
 const userRouter = require("./routes/users-routes");
 const mcserverRouter = require("./routes/minecraft-server-routes");
-
-// status("2b2t.org", 25565, (response) => {
-//   console.log(response);
-// });
-
-// const rcon = new Rcon("localhost", "passwd");
-
-// rcon
-//   .connect()
-//   .then(() => {
-//     return rcon.send("say cipacz").catch((err) => console.log("nie wyslalo")); // That's a command for Minecraft
-//   })
-//   .catch((err) => console.log("jebło"));
+const paypalRouter = require("./routes/paypal");
 
 const server = express();
+server.use(bodyParser.json());
 
 server.use(
   cookieSession({
@@ -38,6 +28,7 @@ server.use(passport.session());
 server.use(authRouter);
 server.use(userRouter);
 server.use(mcserverRouter);
+server.use(paypalRouter);
 
 server.get("/", (req, res) => {
   //   rcon.send("say elowuinsa").catch((err) => console.log("nie wyslalo"));

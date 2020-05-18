@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import ReactDOM from "react-dom";
 import { counterContext } from "../context/CounterContext";
@@ -11,6 +11,7 @@ const Modal = (props) => {
   const { item, type, price } = useContext(context);
   const itemPrice = price * counter.count;
   const loggedIn = useSelector((state) => state.auth);
+  const [error, setError] = useState(false);
   console.log(loggedIn);
 
   const paypalRef = useRef();
@@ -18,26 +19,38 @@ const Modal = (props) => {
   useEffect(() => {
     window.paypal
       .Buttons({
-        createOrder: (data, actions) => {
-          return actions.order.create({
-            purchase_units: [
-              {
-                description: item,
-                amount: {
-                  currency_code: "USD",
-                  value: itemPrice,
-                },
+        createOrder: () => {
+          return axios
+            .post(`/api/paypal/transaction`, {
+              body: {
+                quantity: counter.count,
+                item: item,
+                type: type,
+                priceOne: price,
+                price: itemPrice,
               },
-            ],
-          });
+            })
+            .then(function (res) {
+              return res.data;
+            })
+            .then(function (data) {
+              return data.orderID;
+            });
         },
-        onApprove: async (data, actions) => {
-          const order = await actions.order.capture();
-          console.log("order");
-          console.log(order);
+        onApprove: async (data) => {
+          return axios
+            .post("/api/paypal/transaction/finalise", { orderID: data.orderID })
+            .then(function (res) {
+              console.log(res);
+              return res.data;
+            })
+            .then(function (details) {
+              alert("Transaction funds captuerd from" + details.payer_given_name);
+            });
         },
         onError: (err) => {
-          console.error(err);
+          console.log(err);
+          setError(err);
         },
       })
       .render(paypalRef.current);
@@ -94,7 +107,11 @@ const Modal = (props) => {
             {type.pl}: {item}{" "}
           </div>
         </div>
-        <div className="content">{renderContent()}</div>
+        <div className="content">
+          <div className="content__error">{error && "ERROR PROCESSING PAYMENT!!!"}</div>
+
+          {renderContent()}
+        </div>
         {renderPaypal()}
       </div>
     </div>,
