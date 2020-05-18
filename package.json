@@ -21,7 +21,8 @@
     "passport": "^0.4.1",
     "passport-twitch": "^1.0.3",
     "passport-twitch.js": "0.0.9",
-    "scriptserver-util": "^1.2.0"
+    "scriptserver-util": "^1.2.0",
+    "socket.io": "^2.3.0"
   },
   "repository": {
     "type": "git",

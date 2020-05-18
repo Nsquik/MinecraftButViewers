@@ -41,7 +41,6 @@ const Modal = (props) => {
         onApprove: async (data) => {
           return axios.post("/api/paypal/transaction/finalise", { orderID: data.orderID }).then((r) => {
             window.location.href = "/";
-            alert("CIPONG");
           });
         },
         onError: (err) => {

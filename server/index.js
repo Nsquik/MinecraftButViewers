@@ -12,6 +12,9 @@ const mcserverRouter = require("./routes/minecraft-server-routes");
 const paypalRouter = require("./routes/paypal");
 
 const server = express();
+const ioServer = require("http").createServer(server);
+const io = require("./services/io").initialize(ioServer);
+
 server.use(bodyParser.json());
 
 server.use(
@@ -31,6 +34,6 @@ server.use(paypalRouter);
 
 const PORT = 5000;
 
-server.listen(PORT, () => {
+ioServer.listen(PORT, () => {
   console.log("You are listenin to port: ", PORT);
 });

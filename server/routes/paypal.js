@@ -62,6 +62,8 @@ router.post("/api/paypal/transaction/finalise", requireLogin, requireServerUp, a
     const existingOrder = await (
       await OrderModel.findOneAndUpdate({ orderID: orderID }, { paid: true, captureID: captureID })
     ).save();
+
+    require("../services/io").io().emit("new_order");
   } catch (err) {
     // 5. Handle any errors from the call
     console.error(err);
@@ -74,7 +76,7 @@ router.post("/api/paypal/transaction/finalise", requireLogin, requireServerUp, a
 
 router.get("/api/paypal/recent", async (req, res) => {
   try {
-    const latest = await OrderModel.find()
+    const latest = await OrderModel.find({ paid: true })
       .populate("_user", "img display_name")
       .sort({ _id: -1 })
       .select("_user type quantity item price")
