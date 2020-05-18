@@ -14,7 +14,6 @@ router.get("/api/user/orders", requireLogin, async (req, res) => {
       const userOrders = await OrderModel.find({ _user: req.user.id }, (err, result) => {
         res.json(result).status(200);
       });
-      console.log(userOrders);
     } catch (error) {
       console.log(error);
       res.json({ error }).status(500);

@@ -1,6 +1,7 @@
 module.exports = (req, res, next) => {
   if (!req.user) {
-    res.sendStatus(401);
+    res.json({ error: "Unauthorized", code: 401, message: "Login to access" }).status(401);
+  } else {
+    next();
   }
-  next();
 };
