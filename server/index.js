@@ -2,7 +2,6 @@ const express = require("express");
 const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
-const Rcon = require("modern-rcon");
 require("./services/mongoose");
 const passport = require("passport");
 require("./services/passport");
@@ -30,13 +29,8 @@ server.use(userRouter);
 server.use(mcserverRouter);
 server.use(paypalRouter);
 
-server.get("/", (req, res) => {
-  //   rcon.send("say elowuinsa").catch((err) => console.log("nie wyslalo"));
-  res.json({ message: "cipacsz" });
-});
-
 const PORT = 5000;
 
 server.listen(PORT, () => {
-  console.log("You are running on port: ", PORT);
+  console.log("You are listenin to port: ", PORT);
 });
