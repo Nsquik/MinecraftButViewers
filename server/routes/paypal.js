@@ -5,6 +5,7 @@ const router = express.Router();
 const requireLogin = require("../middlewares/requireLogin");
 const requireServerUp = require("../middlewares/requireServerUp");
 const OrderModel = require("../models/Order");
+const UserModel = require("../models/User");
 
 router.post("/api/paypal/transaction", requireLogin, requireServerUp, async (req, res) => {
   const { price, quantity, item, type, priceOne } = req.body.body;
@@ -72,8 +73,17 @@ router.post("/api/paypal/transaction/finalise", requireLogin, requireServerUp, a
 });
 
 router.get("/api/paypal/recent", async (req, res) => {
-  const latest = await OrderModel.find().sort({ _id: -1 }).limit(10);
-  res.json(latest).status(200);
+  try {
+    const latest = await OrderModel.find()
+      .populate("_user", "img display_name")
+      .sort({ _id: -1 })
+      .select("_user type quantity item price")
+      .limit(10);
+
+    res.json(latest).status(200);
+  } catch {
+    res.json({ error: "Internal", code: 500, message: "Server internal error" });
+  }
 });
 
 module.exports = router;
