@@ -47,7 +47,7 @@ router.post("/api/paypal/transaction", requireLogin, requireServerUp, async (req
   });
 });
 
-router.post("/api/paypal/transaction/finalise", async (req, res) => {
+router.post("/api/paypal/transaction/finalise", requireLogin, requireServerUp, async (req, res) => {
   const { orderID } = req.body;
   // 3. Call PayPal to capture the order
 
@@ -69,6 +69,11 @@ router.post("/api/paypal/transaction/finalise", async (req, res) => {
 
   // 6. Return a successful response to the client
   res.sendStatus(200);
+});
+
+router.get("/api/paypal/recent", async (req, res) => {
+  const latest = await OrderModel.find().sort({ _id: -1 }).limit(10);
+  res.json(latest).status(200);
 });
 
 module.exports = router;
