@@ -1,0 +1,37 @@
+.sidebar {
+  overflow: auto;
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-align: center;
+    padding-top: 1rem;
+  }
+
+  &__list {
+    height: 90%;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 5rem 3rem 1fr;
+    justify-items: end;
+    align-items: center;
+    grid-gap: 1rem;
+    padding: 1rem;
+    &-img {
+      border: 2px solid white;
+      width: 4rem;
+      height: 4rem;
+    }
+
+    &-price {
+      justify-self: center;
+    }
+    &-twitchname {
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+  }
+}

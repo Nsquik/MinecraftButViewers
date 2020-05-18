@@ -13,6 +13,8 @@ const Total = () => {
   );
 };
 
+////////////////////////////////////////
+
 const Reset = () => {
   const { reset } = useContext(counterContext);
 
@@ -23,6 +25,7 @@ const Reset = () => {
   );
 };
 
+////////////////////////////////////////
 const Decrement = () => {
   const { getDecrementerProps } = useContext(counterContext);
 
@@ -43,6 +46,8 @@ const Decrement = () => {
   );
 };
 
+////////////////////////////////////////
+
 const Increment = () => {
   const { getIncrementerProps } = useContext(counterContext);
 
@@ -62,6 +67,8 @@ const Increment = () => {
     </svg>
   );
 };
+
+////////////////////////////////////////
 
 const Counter = ({ children }) => {
   return <>{children}</>;

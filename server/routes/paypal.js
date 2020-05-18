@@ -78,7 +78,7 @@ router.get("/api/paypal/recent", async (req, res) => {
       .populate("_user", "img display_name")
       .sort({ _id: -1 })
       .select("_user type quantity item price")
-      .limit(10);
+      .limit(20);
 
     res.json(latest).status(200);
   } catch {

@@ -5,6 +5,7 @@ import "./App.scss";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import Landing from "./Landing";
+import Sidebar from "./Sidebar";
 
 const App = () => {
   return (
@@ -36,10 +37,6 @@ const App = () => {
 
 const Footer = () => {
   return <div className="footer">footer</div>;
-};
-
-const Sidebar = () => {
-  return <div className="sidebar">sidebar</div>;
 };
 
 const summon = () => {
