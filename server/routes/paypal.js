@@ -4,11 +4,10 @@ const express = require("express");
 const router = express.Router();
 const requireLogin = require("../middlewares/requireLogin");
 const requireServerUp = require("../middlewares/requireServerUp");
+const OrderModel = require("../models/Order");
 
 router.post("/api/paypal/transaction", requireLogin, requireServerUp, async (req, res) => {
-  //   console.log(req.body);
-  const { price } = req.body.body;
-  // 1.Call PayPal to set up a transaction
+  const { price, quantity, item, type, priceOne } = req.body.body;
   const request = new paypal.orders.OrdersCreateRequest();
   request.prefer("return=representation");
   request.requestBody({
@@ -26,10 +25,21 @@ router.post("/api/paypal/transaction", requireLogin, requireServerUp, async (req
   let order;
   try {
     order = await payPalClient.client().execute(request);
+    await new OrderModel({
+      orderID: order.result.id,
+      captureID: null,
+      _user: req.user.id,
+      type: type.eng,
+      quantity: quantity,
+      item: item,
+      price: price,
+      paid: false,
+      finalised: false,
+    }).save();
   } catch (err) {
     // 2. Handle any errors from the call
     console.error(err);
-    return res.send(500);
+    return res.sendStatus(500);
   }
 
   res.status(200).json({
@@ -47,9 +57,10 @@ router.post("/api/paypal/transaction/finalise", async (req, res) => {
   try {
     const capture = await payPalClient.client().execute(request);
 
-    // 4. Save the capture ID to your database. Implement logic to save capture to your database for future reference.
     const captureID = capture.result.purchase_units[0].payments.captures[0].id;
-    // await database.saveCaptureID(captureID);
+    const existingOrder = await (
+      await OrderModel.findOneAndUpdate({ orderID: orderID }, { paid: true, captureID: captureID })
+    ).save();
   } catch (err) {
     // 5. Handle any errors from the call
     console.error(err);
@@ -57,7 +68,7 @@ router.post("/api/paypal/transaction/finalise", async (req, res) => {
   }
 
   // 6. Return a successful response to the client
-  res.send(200);
+  res.sendStatus(200);
 });
 
 module.exports = router;

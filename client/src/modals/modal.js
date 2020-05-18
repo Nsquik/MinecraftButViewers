@@ -5,6 +5,7 @@ import { counterContext } from "../context/CounterContext";
 import { context } from "../context/ItemContext";
 import "./Modal.scss";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 const Modal = (props) => {
   const counter = useContext(counterContext);
@@ -38,15 +39,10 @@ const Modal = (props) => {
             });
         },
         onApprove: async (data) => {
-          return axios
-            .post("/api/paypal/transaction/finalise", { orderID: data.orderID })
-            .then(function (res) {
-              console.log(res);
-              return res.data;
-            })
-            .then(function (details) {
-              alert("Transaction funds captuerd from" + details.payer_given_name);
-            });
+          return axios.post("/api/paypal/transaction/finalise", { orderID: data.orderID }).then((r) => {
+            window.location.href = "/";
+            alert("CIPONG");
+          });
         },
         onError: (err) => {
           console.log(err);
