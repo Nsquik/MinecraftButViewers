@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../../actions/auth";
+import { fetchUser } from "../../actions/user";
 
 const AuthButton = () => {
   const auth = useSelector((state) => state.auth);

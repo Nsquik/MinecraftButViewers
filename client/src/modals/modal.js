@@ -5,7 +5,7 @@ import { counterContext } from "../context/CounterContext";
 import { context } from "../context/ItemContext";
 import "./Modal.scss";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 const Modal = (props) => {
   const counter = useContext(counterContext);
@@ -13,8 +13,7 @@ const Modal = (props) => {
   const itemPrice = price * counter.count;
   const loggedIn = useSelector((state) => state.auth);
   const [error, setError] = useState(false);
-  console.log(loggedIn);
-
+  const alert = useAlert();
   const paypalRef = useRef();
 
   useEffect(() => {
@@ -40,16 +39,19 @@ const Modal = (props) => {
         },
         onApprove: async (data) => {
           return axios.post("/api/paypal/transaction/finalise", { orderID: data.orderID }).then((r) => {
-            window.location.href = "/";
+            props.showModal(false);
+            alert.show("Płatność się powiodła!", { type: "success", timeout: 5000 });
           });
         },
         onError: (err) => {
           console.log(err);
           setError(err);
+          props.showModal(false);
+          alert.show("Wystąpił błąd przy przetwarzaniu płatności!", { type: "error", timeout: 7000 });
         },
       })
       .render(paypalRef.current);
-  }, [item, itemPrice]);
+  }, [item, itemPrice, alert, counter.count, price, props, type]);
 
   const renderContent = () => {
     switch (loggedIn) {
@@ -66,10 +68,10 @@ const Modal = (props) => {
         return (
           <>
             <div className="content__text">Czy na pewno chcesz kupić:</div>
-            <p className="content__item">
+            <div className="content__item">
               {item} {counter.count} szt.
               <div className="content__price">Cena: {itemPrice}$</div>
-            </p>
+            </div>
           </>
         );
       }

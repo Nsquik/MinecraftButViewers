@@ -5,11 +5,12 @@ const keys = require("./config/keys");
 require("./services/mongoose");
 const passport = require("passport");
 require("./services/passport");
-
 const authRouter = require("./auth/auth-routes");
 const userRouter = require("./routes/users-routes");
 const mcserverRouter = require("./routes/minecraft-server-routes");
 const paypalRouter = require("./routes/paypal");
+
+const minecraftRcon = require("./services/minecrafftRcon").initialize("localhost", "jebacdisacipacz69");
 
 const server = express();
 const ioServer = require("http").createServer(server);

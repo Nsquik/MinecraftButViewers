@@ -16,7 +16,7 @@ router.post("/api/paypal/transaction", requireLogin, requireServerUp, async (req
     purchase_units: [
       {
         amount: {
-          currency_code: "USD",
+          currency_code: "PLN",
           value: price,
         },
       },
@@ -59,11 +59,15 @@ router.post("/api/paypal/transaction/finalise", requireLogin, requireServerUp, a
     const capture = await payPalClient.client().execute(request);
 
     const captureID = capture.result.purchase_units[0].payments.captures[0].id;
-    const existingOrder = await (
-      await OrderModel.findOneAndUpdate({ orderID: orderID }, { paid: true, captureID: captureID })
-    ).save();
+    const existingOrder = await OrderModel.findOneAndUpdate(
+      { orderID: orderID },
+      { paid: true, captureID: captureID },
+      { new: true }
+    );
 
+    const { _id } = existingOrder;
     require("../services/io").io().emit("new_order");
+    require("../services/minecrafftRcon").execute(_id);
   } catch (err) {
     // 5. Handle any errors from the call
     console.error(err);

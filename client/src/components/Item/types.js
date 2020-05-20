@@ -1,4 +1,4 @@
-export const SPAWN = { pl: "ZESPAWNUJ", eng: "SPAWN" };
-export const EFFECT = { pl: "EFEKT", eng: "EFFECT" };
-export const SOUND = { pl: "DZWIEK", eng: "SOUND" };
-export const MISC = { pl: "INNE", eng: "MISC" };
+export const SPAWN = { pl: "ZESPAWNUJ", eng: "summon" };
+export const EFFECT = { pl: "EFEKT", eng: "effect" };
+export const SOUND = { pl: "DZWIEK", eng: "playsound" };
+export const MISC = { pl: "INNE", eng: "misc" };

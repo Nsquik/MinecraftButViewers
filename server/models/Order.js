@@ -39,4 +39,10 @@ const OrderSchema = new mongoose.Schema({
   },
 });
 
+// OrderSchema.post("findOneAndUpdate", function (doc, next) {
+//   console.log("doc");
+//   console.log(doc);
+//   next();
+// });
+
 module.exports = mongoose.model("Order", OrderSchema);
