@@ -7,8 +7,12 @@ import "./App.scss";
 
 import Header from "./Header";
 import Navbar from "./Navbar";
-import Landing from "./Landing";
 import Sidebar from "./Sidebar";
+
+import Me from "./Me";
+import Mobs from "./RouteComp/Mobs";
+import Effects from "./RouteComp/Effects";
+import Sounds from "./RouteComp/Sounds";
 
 const App = () => {
   return (
@@ -21,12 +25,11 @@ const App = () => {
               <Navbar />
               <div className="content">
                 <Switch>
-                  <Route exact path="/" component={Landing} />
-                  <Route path="/summon" component={summon} />
-                  <Route path="/sound" component={sound} />
-                  <Route path="/effect" component={effect} />
-                  <Route path="/misc" component={misc} />
-                  {/* <Route path="/me" component={me} /> */}
+                  <Route exact path="/" component={Mobs} />
+                  <Route path="/sound" component={Sounds} />
+                  <Route path="/effect" component={Effects} />
+                  {/* <Route path="/misc" component={misc} /> */}
+                  <Route path="/me" component={Me} />
                   <Redirect to="/" />
                 </Switch>
               </div>
@@ -44,22 +47,6 @@ const App = () => {
 
 const Footer = () => {
   return <div className="footer">footer</div>;
-};
-
-const summon = () => {
-  return "SUMMON";
-};
-
-const sound = () => {
-  return "sound";
-};
-
-const effect = () => {
-  return "effect";
-};
-
-const misc = () => {
-  return "SUMMON";
 };
 
 export default App;
