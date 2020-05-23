@@ -20,11 +20,11 @@ const Navbar = () => {
           DZWIĘKI
         </Link>
       </li>
-      <li className="navbar__item">
+      {/* <li className="navbar__item">
         <Link className="link" to="/misc">
           INNE
         </Link>
-      </li>
+      </li> */}
     </ul>
   );
 };

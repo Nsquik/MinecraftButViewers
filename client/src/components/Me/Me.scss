@@ -1,0 +1,40 @@
+.me {
+  overflow: auto;
+  height: 101%;
+
+  &__list {
+    padding: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    overflow: scroll;
+  }
+
+  &__li {
+    padding: 1rem;
+    background: var(--color-sidebar);
+    width: 50%;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px white solid;
+  }
+
+  &__price {
+    text-align: end;
+    text-transform: lowercase;
+  }
+  &__item {
+    text-align: center;
+  }
+}
+
+.head {
+  font-size: 3rem;
+  font-weight: 900;
+}

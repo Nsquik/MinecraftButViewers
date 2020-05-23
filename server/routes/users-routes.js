@@ -13,7 +13,7 @@ router.get("/api/user/orders", requireLogin, async (req, res) => {
     try {
       const userOrders = await OrderModel.find({ _user: req.user.id }, (err, result) => {
         res.json(result).status(200);
-      });
+      }).select("type item price");
     } catch (error) {
       console.log(error);
       res.json({ error }).status(500);

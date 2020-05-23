@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../actions/user";
+import { Link } from "react-router-dom";
 
 const AuthButton = () => {
   const auth = useSelector((state) => state.auth);
@@ -23,7 +24,9 @@ const AuthButton = () => {
         return (
           <>
             Hej, {auth.display_name}
-            <img src={auth.img} alt="user profile"></img>
+            <Link to="/me">
+              <img src={auth.img} alt="user profile"></img>
+            </Link>
           </>
         );
     }

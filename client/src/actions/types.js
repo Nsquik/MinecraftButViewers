@@ -1,4 +1,5 @@
 export const FETCH_USER = "FETCH_USER";
+export const FETCH_USER_ORDERS = "FETCH_USER_ORDERS";
 
 ///// SERVER ACTIONS ///////
 export const CHECK_SERVER_STATUS = "CHECK_SERVER_STATUS";
