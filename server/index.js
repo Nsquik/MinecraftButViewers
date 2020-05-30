@@ -33,7 +33,7 @@ server.use(userRouter);
 server.use(mcserverRouter);
 server.use(paypalRouter);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
