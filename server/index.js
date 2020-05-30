@@ -38,11 +38,11 @@ const PORT = 5000;
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
 
-  app.use(express.static(path.resolve(__dirname, "../client/build")));
+  server.use(express.static(path.resolve(__dirname, "../client/build")));
 
   // Express will serve up the index.html file
   // if it doesn't recognize the route
-  app.get("*", (req, res) => {
+  server.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
   });
 }
