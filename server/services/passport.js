@@ -2,6 +2,7 @@ const passport = require("passport");
 const twitchStrategy = require("passport-twitch.js").Strategy;
 const keys = require("../config/keys");
 const User = require("../models/User");
+const callbackURL = process.env.TWITCH_CALLBACK || "/auth/twitch/callback";
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -16,7 +17,7 @@ passport.use(
     {
       clientID: keys.twitchClientID,
       clientSecret: keys.twitchSecret,
-      callbackURL: "/auth/twitch/callback",
+      callbackURL: callbackURL,
       scope: "user_read",
     },
     async (accessToken, refreshToken, profile, done) => {
