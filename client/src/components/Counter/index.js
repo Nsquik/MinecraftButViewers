@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { counterContext } from "../../context/CounterContext";
-import { get } from "mongoose";
 
 const Total = () => {
   const { count } = useContext(counterContext);

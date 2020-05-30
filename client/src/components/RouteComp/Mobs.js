@@ -1,6 +1,6 @@
 import React from "react";
 import ListContainer from "../List";
-import { SPAWN, EFFECT } from "../Item/types";
+import { SPAWN } from "../Item/types";
 
 const Mobs = () => {
   return (

@@ -10,7 +10,7 @@ const userRouter = require("./routes/users-routes");
 const mcserverRouter = require("./routes/minecraft-server-routes");
 const paypalRouter = require("./routes/paypal");
 
-const minecraftRcon = require("./services/minecrafftRcon").initialize("localhost", "jebacdisacipacz69");
+// const minecraftRcon = require("./services/minecrafftRcon").initialize("localhost", "haslo123");
 
 const server = express();
 const ioServer = require("http").createServer(server);
@@ -34,6 +34,18 @@ server.use(mcserverRouter);
 server.use(paypalRouter);
 
 const PORT = 5000;
+
+if (process.env.NODE_ENV === "production") {
+  const path = require("path");
+
+  app.use(express.static(path.resolve(__dirname, "../client/build")));
+
+  // Express will serve up the index.html file
+  // if it doesn't recognize the route
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+  });
+}
 
 ioServer.listen(PORT, () => {
   console.log("You are listenin to port: ", PORT);
