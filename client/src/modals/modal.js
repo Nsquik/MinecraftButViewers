@@ -97,21 +97,24 @@ const Modal = (props) => {
   };
 
   return ReactDOM.createPortal(
-    <div onClick={() => props.showModal(false)} className="ui dimmer modals visible active">
-      <div onClick={(e) => e.stopPropagation()} className="ui tiny modal visible active">
-        <div className="header">
-          <div className="header__text">
-            {type.pl}: {item}{" "}
+    <>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+      <div onClick={() => props.showModal(false)} className="ui dimmer modals visible active">
+        <div onClick={(e) => e.stopPropagation()} className="ui tiny modal visible active">
+          <div className="header">
+            <div className="header__text">
+              {type.pl}: {item}{" "}
+            </div>
           </div>
-        </div>
-        <div className="content">
-          <div className="content__error">{error && "ERROR PROCESSING PAYMENT!!!"}</div>
+          <div className="content">
+            <div className="content__error">{error && "ERROR PROCESSING PAYMENT!!!"}</div>
 
-          {renderContent()}
+            {renderContent()}
+          </div>
+          {renderPaypal()}
         </div>
-        {renderPaypal()}
       </div>
-    </div>,
+    </>,
     document.querySelector("#myportal")
   );
 };

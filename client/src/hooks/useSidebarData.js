@@ -9,7 +9,7 @@ const useSidebarData = () => {
 
   useEffect(() => {
     dispatch(fetchLastOrdersGlobal());
-    const socket = socketIOClient("http://127.0.0.1:5000");
+    const socket = socketIOClient();
     socket.on("new_order", () => {
       dispatch(fetchLastOrdersGlobal());
     });
