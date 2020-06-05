@@ -22,11 +22,12 @@
     padding: 1rem;
     &-img {
       border: 2px solid white;
-      width: 4rem;
-      height: 4rem;
+      width: 5rem;
+      height: 5rem;
     }
 
     &-price {
+      font-size: 1.6rem;
       justify-self: center;
     }
     &-twitchname {

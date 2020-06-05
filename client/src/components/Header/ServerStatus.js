@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkServerStatus } from "../../actions/server";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ServerStatus = () => {
   const status = useSelector((state) => state.serverStatus);
@@ -9,7 +10,7 @@ const ServerStatus = () => {
   const renderContent = () => {
     switch (status) {
       case null:
-        return "SPINNER";
+        return <ClipLoader color="#ffdd31" size={25} />;
       case false:
         return "Offline";
 

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../actions/user";
 import { Link } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AuthButton = () => {
   const auth = useSelector((state) => state.auth);
@@ -13,7 +14,7 @@ const AuthButton = () => {
   const renderContent = () => {
     switch (auth) {
       case null:
-        return "SPINNER";
+        return <ClipLoader color={"#ffdd31"} />;
       case false:
         return (
           <button className="header__hello-button">

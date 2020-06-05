@@ -46,7 +46,7 @@ const App = () => {
 };
 
 const Footer = () => {
-  return <div className="footer">footer</div>;
+  return <div className="footer">Made by Kacper Kedzierski. Github: @Nsquik</div>;
 };
 
 export default App;

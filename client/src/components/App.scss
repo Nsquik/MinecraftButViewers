@@ -45,9 +45,13 @@ html {
 }
 
 .footer {
+  display: flex;
+  justify-content: center;
   background: var(--color-header);
   color: white;
   height: 3%;
+  font-size: 1rem;
+  padding-top: 0.4rem;
 }
 
 :root {

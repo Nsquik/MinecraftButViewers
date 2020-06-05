@@ -1,6 +1,7 @@
 import React from "react";
 import "./Me.scss";
 import useUserOrders from "../../hooks/useUserOrders";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Me = () => {
   const data = useUserOrders();
@@ -18,7 +19,7 @@ const Me = () => {
         );
       });
     } else {
-      return "spin";
+      return <ClipLoader color={"#ffdd31"} />;
     }
   };
 
