@@ -4,7 +4,7 @@
 
 # MinecraftButViewers
 
-## Website for MINECRAFT streamers that lets viewers respawn creepers and other mobs, apply an effect on a streamer, play sounds on him for money.
+### Website for MINECRAFT streamers that lets viewers respawn creepers and other mobs, apply an effect on a streamer, play sounds on him for money.
 
 # Stack
 
@@ -36,6 +36,13 @@
 
 # How to deploy on heroku
 
+## PRE DEPLOY
+
+Create twitch app. https://dev.twitch.tv/console/apps
+Create mongo database.
+
+---
+
 1. Clone this repo.
 2. Install heroku CLI
 3. Create Heroku App
@@ -49,4 +56,19 @@
 
 ```
 git push heroku master
+```
+
+5. Set heroku config variables:
+
+```
+COOKIE_KEY: "any string //==// it will encrypt cookie eg. mysecretcookiekey"
+MINECRAFT_IP: "ip of your minecraft server"
+MINECRAFT_RCON_PASSWORD: "minecraft server rcon password"
+MONGO_URI: "URI of your mongoDB"
+PAYPAL_CLIENT_ID: ""
+PAYPAL_SECRET: ""
+TWITCH_CALLBACK: "url which u will be redirected to after twitch auth. eg. https://fathomless-eyrie-41485.herokuapp.com/auth/twitch/callback"
+TWITCH_CLIENT_ID: ""
+TWITCH_SECRET: ""
+
 ```
