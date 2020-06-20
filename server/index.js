@@ -10,7 +10,7 @@ const userRouter = require("./routes/users-routes");
 const mcserverRouter = require("./routes/minecraft-server-routes");
 const paypalRouter = require("./routes/paypal");
 
-// const minecraftRcon = require("./services/minecrafftRcon").initialize("localhost", "haslo123");
+const minecraftRcon = require("./services/minecrafftRcon").initialize("localhost");
 
 const server = express();
 const ioServer = require("http").createServer(server);

@@ -9,7 +9,6 @@ const MAX_COUNT = 10;
 const MIN_COUNT = 1;
 
 const CounterContext = ({ children, max_count = MAX_COUNT }) => {
-  console.log(max_count);
   const initialState = {
     count: 1,
     isPressed: false,

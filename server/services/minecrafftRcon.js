@@ -1,5 +1,7 @@
 const Rcon = require("modern-rcon");
-const rcon = new Rcon("localhost", "jebacdisacipacz69");
+const keys = require("../config/keys");
+const rcon = new Rcon(keys.minecraftIP, keys.minecraftRconPassword);
+
 const OrderModel = require("../models/Order");
 
 const sounds = {
@@ -9,7 +11,7 @@ const sounds = {
   ghast: "entity.ghast.hurt",
 };
 
-exports.initialize = (ip, password) => {
+exports.initialize = () => {
   return rcon
     .connect()
     .then(() => {
