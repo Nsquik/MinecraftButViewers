@@ -38,8 +38,8 @@
 
 ## PRE DEPLOY
 
-Create twitch app. https://dev.twitch.tv/console/apps
-Create mongo database.
+#### Create twitch app. https://dev.twitch.tv/console/apps
+#### Create mongo database.
 
 ---
 
