@@ -34,6 +34,10 @@
 
 - Paypal SDK
 
+- Socket.io
+
+- Rcon 
+
 # How to deploy on heroku
 
 ## PRE DEPLOY
