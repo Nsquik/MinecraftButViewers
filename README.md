@@ -44,6 +44,12 @@
 
 #### Create twitch app. https://dev.twitch.tv/console/apps
 #### Create mongo database.
+###### Go to client/public/index.html and edit: 
+```
+ <script src="https://www.paypal.com/sdk/js?client-id=YOUR__PAYPAL__CLIENT__ID&currency=PAYPAL__CURRENCY__CODE"></script>
+ example:
+ <script src="https://www.paypal.com/sdk/js?client-id=ASdP_WS9QXMVbGR4KG1OoDb104ytezZiy_YKDSne0hgbBm0zS-21hP0i4SnQoVC528F63u14P83KbgI-&currency=PLN"></script>
+```
 
 ---
 
